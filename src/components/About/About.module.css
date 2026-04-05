@@ -1,0 +1,324 @@
+/* About.module.css */
+.aboutSection {
+  position: relative;
+  width: 100%;
+  padding: 8rem 0;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+}
+
+/* Texture de grille en arrière-plan */
+.bgGrid {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  z-index: 0;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+.glowBlob {
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+  top: 10%;
+  right: -10%;
+  z-index: 0;
+  filter: blur(80px);
+}
+
+/* LAYOUT GLOBAL */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* HEADER SECTION */
+.sectionHeader { 
+  margin-bottom: 4rem; 
+  text-align: center;
+}
+
+.sectionTag {
+  font-family: monospace;
+  color: var(--accent-blue);
+  font-size: 0.95rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.textGlow {
+  background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(167, 139, 250, 0.4));
+}
+
+/* GRID BENTO ASYMÉTRIQUE */
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  grid-auto-flow: dense;
+}
+
+/* CARTES (COMMUN) */
+.card {
+  background: rgba(15, 23, 42, 0.6); 
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+              0 10px 40px -10px rgba(0, 0, 0, 0.5);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+.card:hover { border-color: rgba(59, 130, 246, 0.4); transform: translateY(-5px); }
+
+/* DÉTAIL D'INTERFACE MAC OS */
+.cardHeader {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 1rem;
+}
+
+.dots { display: flex; gap: 0.5rem; }
+.dots span {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+.dots span:nth-child(1) { background: #ef4444; } 
+.dots span:nth-child(2) { background: #eab308; } 
+.dots span:nth-child(3) { background: #22c55e; } 
+
+/* BIOGRAPHIE (GAUCHE) */
+.bioCard { grid-column: span 7; display: flex; flex-direction: column; }
+.bioIntro {
+  font-size: 1.4rem; color: var(--text-primary); font-weight: 500;
+  line-height: 1.6; margin-bottom: 1.5rem;
+}
+.bioText {
+  color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;
+}
+.bioText p { margin-bottom: 1.25rem; }
+.bioText p:last-child { margin-bottom: 0; }
+.signature {
+  font-family: 'Brush Script MT', cursive, serif; font-size: 2.5rem;
+  color: var(--text-primary); opacity: 0.6; align-self: flex-end;
+}
+
+/* VISUEL ABSTRAIT (DROITE) */
+.visualCard { grid-column: span 5; padding: 0; min-height: 350px; }
+.visualWrapper {
+  width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+  background: radial-gradient(circle at bottom right, #1e293b, #0f172a);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+
+/* Formes animées */
+.abstractShape1 {
+  position: absolute; width: 250px; height: 250px;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  animation: morphShape 8s ease-in-out infinite both alternate; filter: blur(8px); opacity: 0.8;
+}
+.abstractShape2 {
+  position: absolute; width: 180px; height: 180px;
+  background: linear-gradient(-45deg, #f472b6, #eab308);
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation: morphShape 12s ease-in-out infinite both alternate-reverse; filter: blur(12px); mix-blend-mode: screen;
+}
+@keyframes morphShape {
+  0% { transform: scale(1) rotate(0deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+  100% { transform: scale(1.1) rotate(90deg); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+.glassOverlay {
+  position: absolute; bottom: 2rem; right: 2rem;
+  background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px);
+  padding: 0.6rem 1.2rem; border-radius: 0.5rem; border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.glassOverlay span { font-family: monospace; font-size: 0.85rem; letter-spacing: 0.15em; color: #fff; }
+
+/* TITRES INTERNES */
+.cardTitle { font-size: 1.5rem; color: #fff; margin-bottom: 2rem; font-weight: 700; }
+
+/* TIMELINE (PARCOURS) */
+.expCard { grid-column: span 6; }
+.timeline { display: flex; flex-direction: column; gap: 2rem; position: relative; }
+.timeline::before {
+  content: ''; position: absolute; left: 5px; top: 10px; bottom: 10px; width: 2px;
+  background: rgba(255,255,255,0.1);
+}
+.timelineItem { display: flex; gap: 1.5rem; position: relative; }
+.timeDot {
+  width: 12px; height: 12px; border-radius: 50%; background: var(--accent-blue);
+  box-shadow: 0 0 12px var(--accent-blue); margin-top: 6px; z-index: 1; flex-shrink: 0;
+}
+.timeContent { display: flex; flex-direction: column; gap: 0.4rem; }
+.timeYear { font-size: 0.85rem; color: var(--accent-blue); font-family: monospace; }
+.timeTitle { color: #f8fafc; font-size: 1.15rem; font-weight: 600; }
+.timeDesc { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin: 0; }
+
+/* PROGRESS BARS (COMPÉTENCES) */
+.skillsCard { grid-column: span 6; display: flex; flex-direction: column; }
+.skillBars { display: flex; flex-direction: column; gap: 1.5rem; flex-grow: 1; justify-content: space-evenly; }
+.skillRow { display: flex; flex-direction: column; gap: 0.6rem; }
+.skillInfo { display: flex; justify-content: space-between; font-size: 0.95rem; }
+.skillName { color: #f8fafc; font-weight: 500; }
+.skillPct { color: var(--text-secondary); font-family: monospace; }
+.barTrack { width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 99px; position: relative; }
+.barFill {
+  height: 100%; background: linear-gradient(90deg, var(--accent-blue), #a78bfa);
+  border-radius: 99px; position: relative; box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+/* STATISTIQUES (3 BENTO BOXES INDÉPENDANTES) */
+.statsContainer {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.statBox { 
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(31, 41, 55, 0.4), rgba(15, 23, 42, 0.4));
+  padding: 3rem 1.5rem !important; /* Force override local padding */
+}
+
+.statGlow {
+  font-size: clamp(3.5rem, 5vw, 4.5rem); font-weight: 900; line-height: 1;
+  background: linear-gradient(135deg, #ffffff, #94a3b8);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 15px rgba(0,0,0,0.5));
+}
+.statLabel {
+  margin-top: 0.75rem; color: var(--accent-blue); font-size: 0.95rem; text-transform: uppercase;
+  letter-spacing: 0.15em; font-weight: 700;
+}
+
+
+/* =======================================================
+   RESPONSIVE OPTIMIZATIONS (TABLETTE: 769px -> 1024px)
+   ======================================================= */
+@media (max-width: 1024px) {
+  .aboutSection { padding: 6rem 0; }
+  .contentGrid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .bioCard, .visualCard, .statsContainer { grid-column: span 2; }
+  .expCard, .skillsCard { grid-column: span 1; }
+  .visualCard { min-height: 250px; }
+}
+
+/* =======================================================
+   REMASTER UI/UX MOBILE-FIRST (SMARTPHONES: < 768px)
+   ======================================================= */
+@media (max-width: 768px) {
+  /* Espacements Globaux */
+  .aboutSection { padding: 4rem 0; }
+  .container { padding: 0 1.25rem; }
+  
+  /* Blob optimisé */
+  .glowBlob {
+    width: 100vw; height: 100vw;
+    filter: blur(100px); opacity: 0.3; /* Très atténué pour ne pas polluer */
+    top: 5%; right: -20%;
+  }
+
+  /* Titre équilibré */
+  .sectionHeader { margin-bottom: 2.5rem; text-align: center; }
+  .sectionTag { margin-bottom: 0.75rem; font-size: 0.85rem; }
+  .title { font-size: 2.2rem; line-height: 1.15; margin-bottom: 0.5rem; }
+
+  /* Remise de la disposition en pile verticale standard ultra compacte */
+  .contentGrid { display: flex; flex-direction: column; gap: 1rem; }
+  
+  /* Cartes (Réduction drastique des vides) */
+  .card { padding: 1.5rem; border-radius: 1.25rem; }
+  .card:hover { transform: translateY(0); } /* Retrait du jump hover sur mobile */
+  
+  .cardHeader { margin-bottom: 1.25rem; padding-bottom: 0.75rem; }
+  .cardTitle { font-size: 1.25rem; margin-bottom: 1.25rem; }
+
+  /* BIO CARD */
+  .bioIntro { font-size: 1.1rem; line-height: 1.5; margin-bottom: 1rem; }
+  .bioText { font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
+  .bioText p { margin-bottom: 0.75rem; }
+  .signature { font-size: 1.8rem; margin-top: 0; }
+
+  /* VISUAL CARD (Très décorative, effet glow fluide centré) */
+  .visualCard { height: 170px; min-height: 170px; padding: 0; border-radius: 1.25rem; }
+  .abstractShape1 { 
+    width: 140px; height: 140px; opacity: 1; filter: none; 
+    box-shadow: inset 10px 10px 20px rgba(255,255,255,0.2), 0 0 30px rgba(59, 130, 246, 0.5); 
+  }
+  .abstractShape2 { width: 140px; height: 140px; opacity: 0.8; filter: none; }
+  .glassOverlay { 
+    bottom: auto; right: auto; left: 50%; top: 50%; 
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    padding: 0.6rem 1.2rem; background: rgba(15, 23, 42, 0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .glassOverlay span { font-size: 0.85rem; font-weight: 700; color: #fff; text-align: center; }
+
+  /* TIMELINE (Parcours) */
+  .timeline { gap: 1.25rem; }
+  .timelineItem { gap: 1rem; }
+  .timeDot { width: 10px; height: 10px; margin-top: 4px; box-shadow: 0 0 6px var(--accent-blue); }
+  .timeline::before { left: 4px; } /* Ajustement fin pour aligner parfaitement la ligne */
+  .timeYear { font-size: 0.75rem; }
+  .timeTitle { font-size: 1rem; }
+  .timeDesc { font-size: 0.85rem; line-height: 1.5; margin-top: 0.2rem; }
+
+  /* SKILLS */
+  .skillBars { gap: 1rem; }
+  .skillRow { gap: 0.4rem; }
+  .skillInfo { font-size: 0.85rem; }
+  .barTrack { height: 6px; }
+
+  /* STATS : Nouvelle Grille Ultra Compacte Mobile */
+  .statsContainer { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 0.75rem;
+  }
+  .statBox { 
+    display: flex; flex-direction: column; gap: 0.4rem; padding: 1.5rem 0.5rem !important; 
+    border-radius: 1rem !important; 
+  }
+  .statGlow { font-size: 1.5rem; filter: none; }
+  .statLabel { font-size: 0.55rem; margin-top: 0; letter-spacing: 0.05em; line-height: 1.2; text-align: center; }
+}
+
+/* =======================================================
+   RESPONSIVE OPTIMIZATIONS (PETIT MOBILE)
+   ======================================================= */
+@media (max-width: 400px) {
+  .title { font-size: 1.95rem; }
+  .statsCard { padding: 1.25rem 0.5rem; }
+  .statGlow { font-size: 1.35rem; }
+  .statLabel { font-size: 0.5rem; }
+}
